@@ -9,9 +9,15 @@ sap.ui.define([
 			sUrlParameters = sUrlParameters ? "?" + sUrlParameters : "";
 
 			if (sHash) {
+<<<<<<< HEAD
 				sHash = "#MD_Factory1512-display&/" + (sHash.indexOf("/") === 0 ? sHash.substring(1) : sHash);
 			} else {
 				sHash = "#MD_Factory1512-display";
+=======
+				sHash = "#Factory1407-display&/" + (sHash.indexOf("/") === 0 ? sHash.substring(1) : sHash);
+			} else {
+				sHash = "#Factory1407-display";
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 			}
 
 			return sUrl + sUrlParameters + sHash;

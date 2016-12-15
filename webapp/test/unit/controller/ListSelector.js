@@ -6,6 +6,7 @@ sap.ui.define([
 		"use strict";
 
 		QUnit.module("Initialization", {
+<<<<<<< HEAD
 			beforeEach : function () {
 				sinon.config.useFakeTimers = false;
 				this.oListSelector = new ListSelector();
@@ -119,6 +120,121 @@ sap.ui.define([
 				};
 			},
 			afterEach : function () {
+=======
+			setup : function () {
+				sinon.config.useFakeTimers = false;
+				this.oListSelector = new ListSelector();
+			},
+			teardown : function () {
+				this.oListSelector.destroy();
+			}
+		});
+
+		QUnit.test("Should initialize the List loading promise", function (assert) {
+			// Arrange
+			var done = assert.async(),
+				fnRejectSpy = this.spy(),
+				fnResolveSpy = this.spy();
+
+			// Act
+			this.oListSelector.oWhenListLoadingIsDone.then(fnResolveSpy, fnRejectSpy);
+
+			// Assert
+			setTimeout(function () {
+				assert.strictEqual(fnResolveSpy.callCount, 0, "Did not resolve the promise");
+				assert.strictEqual(fnRejectSpy.callCount, 0, "Did not reject the promise");
+				done();
+			}, 0);
+		});
+
+		QUnit.module("List loading", {
+			setup : function () {
+				sinon.config.useFakeTimers = false;
+				this.oListSelector = new ListSelector();
+			},
+			teardown : function () {
+				this.oListSelector.destroy();
+			}
+		});
+
+		function createListStub (bCreateListItem, sBindingPath) {
+			var fnGetParameter = function () {
+					return true;
+				},
+				oDataStub = {
+					getParameter : fnGetParameter
+				},
+				fnAttachEventOnce = function (sEventName, fnCallback) {
+					fnCallback(oDataStub);
+				},
+				fnGetBinding = this.stub().returns({
+					attachEventOnce : fnAttachEventOnce
+				}),
+				fnAttachEvent = function (sEventName, fnCallback, oContext) {
+					fnCallback.apply(oContext);
+				},
+				oListItemStub = {
+					getBindingContext : this.stub().returns({
+						getPath : this.stub().returns(sBindingPath)
+					})
+				},
+				aListItems = [];
+
+			if (bCreateListItem) {
+				aListItems.push(oListItemStub);
+			}
+
+			return {
+				attachEvent : fnAttachEvent,
+				attachEventOnce : fnAttachEventOnce,
+				getBinding : fnGetBinding,
+				getItems : this.stub().returns(aListItems)
+			};
+		}
+
+		QUnit.test("Should resolve the list loading promise, if the list has items", function (assert) {
+			// Arrange
+			var done = assert.async(),
+				fnRejectSpy = this.spy(),
+				fnResolveSpy = function (sBindingPath) {
+					// Assert
+					assert.strictEqual(sBindingPath, sBindingPath, "Did pass the binding path");
+					assert.strictEqual(fnRejectSpy.callCount, 0, "Did not reject the promise");
+					done();
+				};
+
+			// Act
+			this.oListSelector.oWhenListLoadingIsDone.then(fnResolveSpy, fnRejectSpy);
+			this.oListSelector.setBoundMasterList(createListStub.call(this, true, "anything"));
+		});
+
+		QUnit.test("Should reject the list loading promise, if the list has no items", function (assert) {
+			// Arrange
+			var done = assert.async(),
+				fnResolveSpy = this.spy(),
+				fnRejectSpy = function () {
+					// Assert
+					assert.strictEqual(fnResolveSpy.callCount, 0, "Did not resolve the promise");
+					done();
+				};
+
+			// Act
+			this.oListSelector.oWhenListLoadingIsDone.then(fnResolveSpy, fnRejectSpy);
+			this.oListSelector.setBoundMasterList(createListStub.call(this, false));
+		});
+
+		QUnit.module("Selecting item in the list", {
+			setup : function () {
+				sinon.config.useFakeTimers = false;
+				this.oListSelector = new ListSelector();
+				this.oListSelector.oWhenListLoadingIsDone = {
+					then : function (fnAct) {
+						this.fnAct = fnAct;
+					}.bind(this)
+				};
+			},
+			teardown : function () {
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 				this.oListSelector.destroy();
 			}
 		});

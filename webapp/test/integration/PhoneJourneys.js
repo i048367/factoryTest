@@ -26,4 +26,9 @@ sap.ui.require([
 	], function () {
 		QUnit.start();
 	});
+<<<<<<< HEAD
 });
+=======
+});
+
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git

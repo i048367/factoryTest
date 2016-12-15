@@ -1,4 +1,5 @@
 <mvc:View
+<<<<<<< HEAD
 	controllerName="ns.controller.App"
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true"
@@ -7,3 +8,13 @@
 	xmlns="sap.m">
 	<SplitApp id="idAppControl" />
 </mvc:View>
+=======
+		controllerName="ns.controller.App"
+		xmlns:mvc="sap.ui.core.mvc"
+		displayBlock="true"
+		busy="{appView>/busy}"
+		busyIndicatorDelay="{appView>/delay}"
+		xmlns="sap.m">
+	<SplitApp id="idAppControl" />
+</mvc:View>
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git

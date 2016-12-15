@@ -28,7 +28,12 @@ sap.ui.define([
 
 		opaTest("Entering something that cannot be found into search field and pressing search field's refresh should leave the list as it was", function (Given, When, Then) {
 			//Actions
+<<<<<<< HEAD
 			When.onTheMasterPage.iTypeSomethingInTheSearchThatCannotBeFoundAndTriggerRefresh();
+=======
+			When.onTheMasterPage.iTypeSomethingInTheSearchThatCannotBeFound().
+				and.iTriggerRefresh();
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 
 			// Assertions
 			Then.onTheMasterPage.theListHasEntries();

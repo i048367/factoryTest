@@ -6,7 +6,11 @@ sap.ui.define([
 		"use strict";
 
 		QUnit.module("createDeviceModel", {
+<<<<<<< HEAD
 			afterEach : function () {
+=======
+			teardown : function () {
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 				this.oDeviceModel.destroy();
 			}
 		});

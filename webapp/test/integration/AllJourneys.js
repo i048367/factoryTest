@@ -5,7 +5,11 @@ QUnit.config.autostart = false;
 
 // We cannot provide stable mock data out of the template.
 // If you introduce mock data, by adding .json files in your webapp/localService/mockdata folder you have to provide the following minimum data:
+<<<<<<< HEAD
 // * At least 3 FlightCollection in the list
+=======
+// * At least 3 SEPMRA_C_PO_Employee in the list
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 
 sap.ui.require([
 	"sap/ui/test/Opa5",

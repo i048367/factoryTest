@@ -81,6 +81,7 @@ sap.ui.define([
 			_onObjectMatched : function (oEvent) {
 				var sObjectId =  oEvent.getParameter("arguments").objectId;
 				this.getModel().metadataLoaded().then( function() {
+<<<<<<< HEAD
 					var sObjectPath = this.getModel().createKey("FlightCollection", {
 						carrid :  sObjectId
 					});
@@ -134,6 +135,61 @@ sap.ui.define([
 					oObject = oView.getModel().getObject(sPath),
 					sObjectId = oObject.carrid,
 					sObjectName = oObject.carrid,
+=======
+					var sObjectPath = this.getModel().createKey("SEPMRA_C_PO_Employee", {
+						Employee :  sObjectId
+					});
+					this._bindView("/" + sObjectPath);
+				}.bind(this));
+			},
+
+			/**
+			 * Binds the view to the object path. Makes sure that detail view displays
+			 * a busy indicator while data for the corresponding element binding is loaded.
+			 * @function
+			 * @param {string} sObjectPath path to the object to be bound to the view.
+			 * @private
+			 */
+			_bindView : function (sObjectPath) {
+				// Set busy indicator during view binding
+				var oViewModel = this.getModel("detailView");
+
+				// If the view was not bound yet its not busy, only if the binding requests data it is set to busy again
+				oViewModel.setProperty("/busy", false);
+
+				this.getView().bindElement({
+					path : sObjectPath,
+					events: {
+						change : this._onBindingChange.bind(this),
+						dataRequested : function () {
+							oViewModel.setProperty("/busy", true);
+						},
+						dataReceived: function () {
+							oViewModel.setProperty("/busy", false);
+						}
+					}
+				});
+			},
+
+			_onBindingChange : function () {
+				var oView = this.getView(),
+					oElementBinding = oView.getElementBinding();
+
+				// No data for the binding
+				if (!oElementBinding.getBoundContext()) {
+					this.getRouter().getTargets().display("detailObjectNotFound");
+					// if object could not be found, the selection in the master list
+					// does not make sense anymore.
+					this.getOwnerComponent().oListSelector.clearMasterListSelection();
+					return;
+				}
+
+				var sPath = oElementBinding.getPath(),
+					oResourceBundle = this.getResourceBundle(),
+					oObject = oView.getModel().getObject(sPath),
+					sObjectId = oObject.Employee,
+					sObjectName = oObject.Employee,
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 					oViewModel = this.getModel("detailView");
 
 				this.getOwnerComponent().oListSelector.selectAListItem(sPath);

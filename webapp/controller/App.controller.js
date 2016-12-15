@@ -39,4 +39,8 @@ sap.ui.define([
 		});
 
 	}
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git

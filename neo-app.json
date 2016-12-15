@@ -5,6 +5,7 @@
       "target": {
         "type": "service",
         "name": "sapui5",
+<<<<<<< HEAD
         "entryPath": "/resources"
       },
       "description": "SAPUI5 Resources"
@@ -44,6 +45,49 @@
         "entryPath": "/sap/opu/odata"
       },
       "description": "Gateway system GM6"
+=======
+        "version": "snapshot",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/webapp/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "version": "snapshot",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "RefAppsBackendDev",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "RefAppsBackendDev"
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
     }
   ]
 }

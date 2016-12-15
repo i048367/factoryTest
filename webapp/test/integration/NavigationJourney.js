@@ -53,6 +53,7 @@ sap.ui.define([
 			Given.iStartMyAppOnADesktopToTestErrorHandler("metadataError=true");
 
 			// Assertions
+<<<<<<< HEAD
 			Then.onTheAppPage.iShouldSeeTheMessageBox().
 				and.iTeardownMyAppFrame();
 		});
@@ -63,6 +64,18 @@ sap.ui.define([
 
 			// Assertions
 			Then.onTheAppPage.iShouldSeeTheMessageBox().
+=======
+			Then.onTheAppPage.iShouldSeeTheMessageBox("metadataErrorMessageBox").
+				and.iTeardownMyAppFrame();
+		});
+
+		opaTest("Start the App and simulate bad request error: MessageBox should be shown", function (Given, When, Then) {
+			//Arrangement
+			Given.iStartMyAppOnADesktopToTestErrorHandler("errorType=serverError");
+
+			// Assertions
+			Then.onTheAppPage.iShouldSeeTheMessageBox("serviceErrorMessageBox").
+>>>>>>> branch 'master' of https://github.com/i048367/factoryTest.git
 				and.iTeardownMyAppFrame();
 		});
 
